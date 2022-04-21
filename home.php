@@ -155,7 +155,7 @@
      header("Location: index.php");
      exit();
      
-}
+} 
 //sql query to find average
 $sql = "select id ,temp,humidity from Data ORDER bY id desc limit 4;";
 $result = $conn->query($sql);
