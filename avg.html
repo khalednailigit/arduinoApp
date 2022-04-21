@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Demonstrates some logic errors" />
+  <meta name="keywords" content="HTML, average, errors" />
+  <title>Average numbers</title>
+  <script src="badaverage.js"></script>
+</head>
+<body>
+    <h1>Average numbers</h1>
+    <p>Click the button to enter a series of numbers to average</p>
+    <button id="enter">Enter your first number</button>
+    <p><span id="numberList"></span></p>
+    <button id="calculate">Calculate the average</button>
+    <p><span id="result"></span></p>
+
+</body>
+</html>
+<footer>
+    <?php 
+         if($_SESSION['admin']==1) {
+    ?><!-- checking if -->
+    
+    
+    
+   
+  
+    
+    
+    
+    
+    </footer>
+    
+    
+    
+    <?php 
+
+
+}else{
+     header("Location: index.php");
+     exit();
+     
+}
+//sql query to find average
+$sql = "select id ,temp,humidity from Data ORDER bY id desc limit 4;";
+$result = $conn->query($sql);
+$nbr=mysqli_num_rows($result);
+//display data on web page
+$totalTemp=0;
+$totalhumid=0;
+while($row = mysqli_fetch_array($result)){
+     $totalTemp+=$row['temp'];
+     $totalhumid+=$row['humidity'];
+}
+if($nbr>0){
+$avghumid=$totalhumid/$nbr;
+$avgtemp=$totalTemp/$nbr;
+?>
+<h1><?php echo "avg temp:".$avgtemp;
+echo "avg humid:".$avghumid; ?></h1>
+<?php
+}
+else
+echo "no readings in the table ";
+//close the connection
+  
+$conn->close();
+
+
+     
+
+ ?>
